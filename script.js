@@ -1,8 +1,7 @@
 "use strict";
 
-const capitalize = function (str) {
-  return str[0].toUpperCase() + str.slice(1);
-};
+let scorePlayer = 0;
+let scoreComputer = 0;
 
 // Get random choice of paper, rock or scissor
 const computerPlay = function () {
@@ -31,32 +30,59 @@ const playRound = function (playerSelection, computerSelection) {
   // Check player selection against computer selection
   // according to rock, paper, scissor rules
   if (playerSelection === computerSelection) {
-    return `It's a draw, you both chose ${capitalize(playerSelection)}`;
+    console.log(`It's a draw, you both chose ${capitalize(playerSelection)}`);
+    return "draw";
   } else if (playerSelection === "rock") {
     if (computerSelection === "scissor") {
-      return winMessage;
+      console.log(winMessage);
+      return "winner";
     } else {
-      return looseMessage;
+      console.log(looseMessage);
+      return "looser";
     }
   } else if (playerSelection === "paper") {
     if (computerSelection === "rock") {
-      return winMessage;
+      console.log(winMessage);
+      return "winner";
     } else {
-      return looseMessage;
+      console.log(looseMessage);
+      return "looser";
     }
   } else if (playerSelection === "scissor") {
     if (computerSelection === "paper") {
-      return winMessage;
+      console.log(winMessage);
+      return "winner";
     } else {
-      return looseMessage;
+      console.log(looseMessage);
+      return "looser";
     }
   } else {
     return "Invalid input";
   }
 };
 
-// Get user input from prompt
-const userSelection = prompt("Choose rock, paper or scissor").toLowerCase();
-const computerSelection = computerPlay();
+const game = function () {
+  let playing = true;
 
-console.log(playRound(userSelection, computerSelection));
+  while (playing) {
+    const userSelection = prompt("Choose rock, paper or scissor").toLowerCase();
+    const computerSelection = computerPlay();
+    const check = playRound(userSelection, computerSelection);
+
+    check === "winner" ? scorePlayer++ : scoreComputer++;
+
+    if (scorePlayer === 5) {
+      playing = false;
+      console.log(`Player win!`);
+    } else if (scoreComputer === 5) {
+      playing = false;
+      console.log(`Computer win!`);
+    }
+  }
+};
+
+const capitalize = function (str) {
+  return str[0].toUpperCase() + str.slice(1);
+};
+
+game();
