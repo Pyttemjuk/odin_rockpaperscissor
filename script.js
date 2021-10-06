@@ -1,10 +1,28 @@
 "use strict";
 
-let scorePlayer = 0;
-let scoreComputer = 0;
+const imagesEl = document.querySelectorAll(".image");
+const messageEl = document.querySelector(".message");
+const scorePlayerEl = document.querySelector(".score-player");
+const scoreComputerEl = document.querySelector(".score-computer");
+const winnerEl = document.querySelector(".winner");
+
+let scorePlayer, scoreComputer, playing;
+
+// Helper function
+function capitalize(str) {
+  return str[0].toUpperCase() + str.slice(1);
+}
+
+function init() {
+  scorePlayer = 0;
+  scoreComputer = 0;
+  playing = true;
+  messageEl.textContent = "Click image to play";
+}
+init();
 
 // Get random choice of paper, rock or scissor
-const computerPlay = function () {
+function computerSelect() {
   const random = Math.trunc(Math.random() * 3 + 1);
 
   switch (random) {
@@ -13,12 +31,33 @@ const computerPlay = function () {
     case 2:
       return "paper";
     case 3:
-      return "scissor";
+      return "scissors";
   }
-};
+}
 
-// Play a round of rock, paper, scissor
-const playRound = function (playerSelection, computerSelection) {
+function playerSelect() {
+  let playerSelection = "";
+
+  imagesEl.forEach((image) => {
+    image.addEventListener("click", function () {
+      if (playing) {
+        if (image.classList.contains("rock")) {
+          playerSelection = "rock";
+        } else if (image.classList.contains("paper")) {
+          playerSelection = "paper";
+        } else if (image.classList.contains("scissors")) {
+          playerSelection = "scissors";
+        }
+        playRound(playerSelection);
+      }
+    });
+  });
+}
+playerSelect();
+
+function playRound(playerSelection) {
+  const computerSelection = computerSelect();
+
   const winMessage = `You win, ${capitalize(
     playerSelection
   )} beats ${capitalize(computerSelection)}`;
@@ -27,62 +66,47 @@ const playRound = function (playerSelection, computerSelection) {
     computerSelection
   )} beats ${capitalize(playerSelection)}`;
 
-  // Check player selection against computer selection
+  const drawMessage = `It's a draw, you both chose ${capitalize(
+    playerSelection
+  )}`;
+
+  //Check player selection against computer selection
   // according to rock, paper, scissor rules
   if (playerSelection === computerSelection) {
-    console.log(`It's a draw, you both chose ${capitalize(playerSelection)}`);
-    return "draw";
+    messageEl.textContent = drawMessage;
   } else if (playerSelection === "rock") {
-    if (computerSelection === "scissor") {
-      console.log(winMessage);
-      return "winner";
+    if (computerSelection === "scissors") {
+      messageEl.textContent = winMessage;
+      scorePlayer++;
     } else {
-      console.log(looseMessage);
-      return "looser";
+      messageEl.textContent = looseMessage;
+      scoreComputer++;
     }
   } else if (playerSelection === "paper") {
     if (computerSelection === "rock") {
-      console.log(winMessage);
-      return "winner";
+      messageEl.textContent = winMessage;
+      scorePlayer++;
     } else {
-      console.log(looseMessage);
-      return "looser";
+      messageEl.textContent = looseMessage;
+      scoreComputer++;
     }
-  } else if (playerSelection === "scissor") {
+  } else if (playerSelection === "scissors") {
     if (computerSelection === "paper") {
-      console.log(winMessage);
-      return "winner";
+      message.textContent = winMessage;
+      scorePlayer++;
     } else {
-      console.log(looseMessage);
-      return "looser";
-    }
-  } else {
-    return "Invalid input";
-  }
-};
-
-const game = function () {
-  let playing = true;
-
-  while (playing) {
-    const userSelection = prompt("Choose rock, paper or scissor").toLowerCase();
-    const computerSelection = computerPlay();
-    const check = playRound(userSelection, computerSelection);
-
-    check === "winner" ? scorePlayer++ : scoreComputer++;
-
-    if (scorePlayer === 5) {
-      playing = false;
-      console.log(`Player win!`);
-    } else if (scoreComputer === 5) {
-      playing = false;
-      console.log(`Computer win!`);
+      message.textContent = looseMessage;
+      scoreComputer++;
     }
   }
-};
 
-const capitalize = function (str) {
-  return str[0].toUpperCase() + str.slice(1);
-};
+  if (scorePlayer === 5 || scoreComputer === 5) {
+    playing = false;
+    winnerEl.textContent = `${
+      scorePlayer === 5 ? "Player win!" : "Computer win!"
+    }`;
+  }
 
-game();
+  scoreComputerEl.textContent = scoreComputer;
+  scorePlayerEl.textContent = scorePlayer;
+}

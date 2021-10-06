@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Acme", Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  background-color: rgb(129, 1, 80);
+  color: rgb(250, 246, 240);
+}
+
+.images {
+  gap: 80px;
+  max-width: 800px;
+}
+
+.rules {
+  max-width: 700px;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(250, 215, 228);
+  border-radius: 10px;
+  text-align: center;
+  height: 300px;
+  width: 500px;
+}
+
+.current-score.flex-row {
+  gap: 100px;
+}
+
+footer {
+  background-color: rgb(129, 1, 80);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 200px;
+}
+
+/* MARGINS AND PADDING */
+header {
+  padding: 32px 0;
+}
+
+header,
+.choose,
+.game {
+  margin-bottom: 32px;
+}
+
+.rules {
+  margin-bottom: 16px;
+}
+
+.round,
+.score,
+.winner {
+  padding: 16px 0;
+}
+
+footer {
+  padding-bottom: 32px;
+}
+
+/* FONT STYLES */
+
+h1 {
+  font-size: 72px;
+}
+
+h2 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 32px;
+}
+
+p {
+  font-size: 24px;
+  text-align: center;
+}
+
+footer p {
+  color: rgb(250, 246, 240);
+  font-size: 16px;
+}

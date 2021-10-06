@@ -4,9 +4,76 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Rock, paper, scissor</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Acme"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <script src="script.js"></script>
+    <header>
+      <div class="container flex-row">
+        <h1>Rock, paper, scissors</h1>
+      </div>
+    </header>
+    <section>
+      <div class="rules container">
+        <p>
+          The game is Rock, Paper, Scissors. It is you against the computer. The
+          rules are simple. Rock beats scissors, scissors beats paper and paper
+          beats rock. The winner gets one point, but if it's a tie you both
+          loose. First to five is declared victorious.
+        </p>
+        <p>Who will win?</p>
+        <p>Who will be the better... man?</p>
+      </div>
+    </section>
+    <section class="choose">
+      <div class="container flex-column">
+        <h2>Choose your weapon</h2>
+        <div class="images flex-row">
+          <div class="rock image">
+            <img src="images/rocks.png" alt="Rock" />
+          </div>
+          <div class="paper image">
+            <img src="images/toilet-paper.png" alt="Paper" />
+          </div>
+          <div class="scissors image">
+            <img src="images/scissors.png" alt="Scissors" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="game">
+      <div class="container flex-column">
+        <div class="score">
+          <div class="current">
+            <h3>Current round</h3>
+            <p class="message">Message</p>
+          </div>
+          <div class="total">
+            <h3>Total score</h3>
+            <div class="current-score flex-row">
+              <div>
+                <p>Player</p>
+                <p class="score-player">0</p>
+              </div>
+              <div>
+                <p>Computer</p>
+                <p class="score-computer">0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="winner">Who will win?</h3>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>Made by Pyttemjuk</p>
+    </footer>
   </body>
 </html>
